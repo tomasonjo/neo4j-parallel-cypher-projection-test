@@ -45,7 +45,7 @@ RETURN loadMillis,computeMillis
 ```
 # Results
 
-Running 100 tests for each query, on a 16GB RAM, 4 CPU laptop, batchSize: 100_000
+Running 100 tests for each query and considering only top 50 load times, on a 16GB RAM, 4 CPU laptop, batchSize: 100_000
 
 ## Single rel
 
