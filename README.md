@@ -30,11 +30,11 @@ python3 test_parallel.py
 ```
 # Results
 
-Used tests=100 on a 16GB RAM, 4 CPU laptop, 
+Used tests:100 on a 16GB RAM, 4 CPU laptop, batchSize: 100_000
 
 ## Single rel
 
-Relationships considered: 571927
+Relationships projected: 571927
 
 Relationship query:
 
@@ -43,6 +43,69 @@ MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
 RETURN id(s1) as source, id(s2) as target
 ```
 
-### Graph:
+### Chart:
 
 ![](img/single_rel_results.png)
+
+## Agg rel
+
+Relationships projected: 234792
+
+Relationship query:
+
+```
+MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
+RETURN id(s1) as source, id(s2) as target, count(*) as weight
+```
+
+### Chart:
+
+![](img/agg_rel_results.png)
+
+## Agg Filter rel
+
+Relationships projected: 221593
+
+Relationship query:
+
+```
+MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
+WHERE r.link_sentiment = 1
+RETURN id(s1) as source, id(s2) as target, count(*) as weight
+```
+
+### Chart:
+
+![](img/agg_filter_rel_results.png)
+
+## Agg Date rel
+
+Relationships projected: 98454
+
+Relationship query:
+
+```
+MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
+WHERE r.date.year = 2016
+RETURN id(s1) as source, id(s2) as target, count(*) as weight
+```
+
+### Chart:
+
+![](img/agg_date_rel_results.png)
+
+## Agg Date Filter rel
+
+Relationships projected: 92428
+
+Relationship query:
+
+```
+MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
+WHERE r.date.year = 2016 AND r.link_sentiment= 1
+RETURN id(s1) as source, id(s2) as target, count(*) as weight
+```
+
+### Chart:
+
+![](img/agg_date_filter_rel_results.png)
