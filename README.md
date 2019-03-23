@@ -26,11 +26,26 @@ date:localDateTime(replace(row['TIMESTAMP'],' ','T'))}]->(t)
 ```
 # Run test
 ```
-python3 test_parallel.py 
+python3 test_parallel.py
+
+```
+
+# Example call
+
+Using pageRank writeback with cypher projections for testing load time using loadMillis
+
+```
+CALL algo.pageRank(
+'MATCH (s:Subreddit) RETURN id(s) as id',
+'MATCH (s1:Subreddit)-[r:LINK]->(s2:Subreddit)
+ RETURN id(s1) as source, id(s2) as target',
+{graph:'cypher'})
+YIELD loadMillis,computeMillis
+RETURN loadMillis,computeMillis
 ```
 # Results
 
-Used tests:100 on a 16GB RAM, 4 CPU laptop, batchSize: 100_000
+Running 100 tests for each query, on a 16GB RAM, 4 CPU laptop, batchSize: 100_000
 
 ## Single rel
 
