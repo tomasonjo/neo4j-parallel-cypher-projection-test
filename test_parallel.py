@@ -10,7 +10,7 @@ from queries.aggregate_date_rel_queries import agg_date_rel, agg_date_rel_parall
 
 # Connect to Neo4j
 neo4j_username = 'neo4j'
-neo4j_password = 'burek123'
+neo4j_password = 'test'
 neo4j_url = "bolt://localhost:7687"
 
 driver = GraphDatabase.driver(
